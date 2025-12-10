@@ -1,4 +1,4 @@
-# Building and Running UptimeMonitor
+# Building and Running PerformanceMonitor
 
 ## Prerequisites
 
@@ -35,18 +35,18 @@ We provide convenient scripts for building and running:
 
 ```bash
 # Build Debug
-xcodebuild -project UptimeMonitor.xcodeproj -scheme UptimeMonitor -configuration Debug clean build
+xcodebuild -project PerformanceMonitor/PerformanceMonitor.xcodeproj -scheme PerformanceMonitor -configuration Debug clean build
 
 # Build Release
-xcodebuild -project UptimeMonitor.xcodeproj -scheme UptimeMonitor -configuration Release clean build
+xcodebuild -project PerformanceMonitor/PerformanceMonitor.xcodeproj -scheme PerformanceMonitor -configuration Release clean build
 ```
 
-The built app will be in: `./build/Build/Products/Debug/UptimeMonitor.app` (or `Release`)
+The built app will be in: `./build/Build/Products/Debug/PerformanceMonitor.app` (or `Release`)
 
 ### Option 3: Using Xcode GUI
 
-1. Double-click `UptimeMonitor.xcodeproj` to open in Xcode
-2. Select the scheme: **UptimeMonitor** (top toolbar)
+1. Double-click `PerformanceMonitor/PerformanceMonitor.xcodeproj` to open in Xcode
+2. Select the scheme: **PerformanceMonitor** (top toolbar)
 3. Select configuration: **Debug** or **Release**
 4. Build: Press `⌘B` or Product > Build
 5. Run: Press `⌘R` or Product > Run
@@ -142,3 +142,4 @@ codesign --deep --force --verify --verbose --sign "Developer ID Application: You
 5. **Iterate**
 
 The app will appear in your menu bar (top right) once running.
+

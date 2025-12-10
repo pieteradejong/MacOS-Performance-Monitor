@@ -1,8 +1,8 @@
-# UptimeMonitor - Development Roadmap
+# PerformanceMonitor - Development Roadmap
 
 ## Project Name
 
-**UptimeMonitor**
+**PerformanceMonitor**
 
 ## 1. Project Goal
 
@@ -133,8 +133,8 @@ Each should map to:
 Have Cursor generate the following clean structure:
 
 ```
-UptimeMonitor/
-  ├── UptimeMonitorApp.swift       // entry point, MenuBarExtra
+PerformanceMonitor/
+  ├── PerformanceMonitorApp.swift  // entry point, MenuBarExtra
   ├── Info.plist                   // LSUIElement = YES
   ├── Models/
   │     ├── SystemMonitor.swift    // uptime, swap, compression, refresh timer
@@ -150,7 +150,7 @@ UptimeMonitor/
 
 ## 4. Implementation Instructions
 
-### A. UptimeMonitorApp.swift
+### A. PerformanceMonitorApp.swift
 
 - Create a shared `SystemMonitor` as a `@StateObject`
 - Menu bar title should display uptime like "3.2d"

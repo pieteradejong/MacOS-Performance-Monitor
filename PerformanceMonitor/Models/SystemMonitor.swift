@@ -11,17 +11,25 @@ final class SystemMonitor: ObservableObject {
     /// Computed health status based on snapshot data
     @Published var health: HealthStatus = .ok
     
+    /// Computed drift score (0-100)
+    @MainActor
+    var driftScore: DriftScore? {
+        guard let snapshot = snapshot else { return nil }
+        return DriftScore.calculate(from: snapshot)
+    }
+    
     /// Timer refresh interval in seconds (default: 10s as per dev_notes)
     private let updateInterval: TimeInterval
     
     private var updateTimer: Timer?
     
+    @MainActor
     init(updateInterval: TimeInterval = 10.0) {
         self.updateInterval = updateInterval
-        Task { @MainActor in
-            updateMetrics()
-            startTimer()
-        }
+        // Initial update
+        updateMetrics()
+        // Start timer
+        startTimer()
     }
     
     deinit {
@@ -31,10 +39,17 @@ final class SystemMonitor: ObservableObject {
     /// Start the timer to update metrics every N seconds
     @MainActor
     private func startTimer() {
+        // Invalidate any existing timer
+        updateTimer?.invalidate()
+        
+        // Create timer on main run loop
         updateTimer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { [weak self] _ in
-            Task { @MainActor in
-                self?.updateMetrics()
-            }
+            self?.updateMetrics()
+        }
+        
+        // Ensure timer fires in common modes (works even when menu is open)
+        if let timer = updateTimer {
+            RunLoop.current.add(timer, forMode: .common)
         }
     }
     
@@ -57,11 +72,25 @@ final class SystemMonitor: ObservableObject {
         // Parse swap usage from sysctl
         let swapUsedMB = VMStatParser.parseSwapUsedMBFromSysctl()
         
-        // Parse free memory from vm_stat
+        // Parse memory information from vm_stat
         let vmStatOutput = Shell.runShell("/usr/bin/vm_stat")
         let freeMemoryMB = VMStatParser.parseFreeMemoryMB(vmStatOutput)
+        let memoryPressureLevel = VMStatParser.getMemoryPressureLevel(vmStatOutput)
         
-        // Create new snapshot
+        // Get CPU usage breakdown
+        let (cpuUser, cpuSystem, cpuIdle) = CPUParser.parseCPUUsage()
+        let (topProcessName, topProcessCPU) = CPUParser.getTopProcess()
+        
+        // Get disk information
+        let diskInfo = DiskParser.parseDiskUsage()
+        
+        // Get Spotlight indexing status
+        let spotlightStatus = SpotlightParser.getSpotlightStatus()
+        
+        // Get app activity
+        let appActivity = AppActivityParser.getAppActivity()
+        
+        // Create new snapshot with all metrics
         snapshot = SystemSnapshot(
             timestamp: Date(),
             uptimeSeconds: uptimeSeconds,
@@ -69,7 +98,21 @@ final class SystemMonitor: ObservableObject {
             load5: load5,
             load15: load15,
             swapUsedMB: swapUsedMB,
-            freeMemoryMB: freeMemoryMB
+            freeMemoryMB: freeMemoryMB,
+            cpuUserPercent: cpuUser,
+            cpuSystemPercent: cpuSystem,
+            cpuIdlePercent: cpuIdle,
+            topProcessName: topProcessName,
+            topProcessCPUPercent: topProcessCPU,
+            memoryPressureLevel: memoryPressureLevel,
+            diskFreeGB: diskInfo.freeGB,
+            diskUsedGB: diskInfo.usedGB,
+            diskFreePercent: diskInfo.freePercent,
+            isSpotlightIndexing: spotlightStatus.isIndexing,
+            spotlightIndexingPath: spotlightStatus.indexingPath,
+            spotlightIndexingDurationMinutes: spotlightStatus.durationMinutes,
+            activeAppsCount: appActivity.activeAppsCount,
+            heavyAppsCount: appActivity.heavyAppsCount
         )
         
         // Update health status based on rules
@@ -147,5 +190,56 @@ final class SystemMonitor: ObservableObject {
     func formattedLoadAverages() -> String {
         guard let snapshot = snapshot else { return "0.00 0.00 0.00" }
         return String(format: "%.2f %.2f %.2f", snapshot.load1, snapshot.load5, snapshot.load15)
+    }
+    
+    /// Format CPU breakdown for display
+    @MainActor
+    func formattedCPUBreakdown() -> String {
+        guard let snapshot = snapshot else { return "User 0% · System 0% · Idle 100%" }
+        return String(format: "User %.0f%% · System %.0f%% · Idle %.0f%%",
+                     snapshot.cpuUserPercent,
+                     snapshot.cpuSystemPercent,
+                     snapshot.cpuIdlePercent)
+    }
+    
+    /// Format memory pressure for display
+    @MainActor
+    func formattedMemoryPressure() -> String {
+        guard let snapshot = snapshot else { return "Unknown" }
+        return snapshot.memoryPressureLevel.rawValue
+    }
+    
+    /// Format disk free space for display
+    @MainActor
+    func formattedDiskFree() -> String {
+        guard let snapshot = snapshot else { return "Unknown" }
+        return String(format: "%.0f GB free (%.0f%%)", snapshot.diskFreeGB, snapshot.diskFreePercent)
+    }
+    
+    /// Format Spotlight indexing status for display
+    @MainActor
+    func formattedSpotlightStatus() -> String {
+        guard let snapshot = snapshot else { return "Spotlight: Unknown" }
+        if snapshot.isSpotlightIndexing {
+            if let path = snapshot.spotlightIndexingPath {
+                let displayPath = path.count > 40 ? "..." + String(path.suffix(37)) : path
+                if let duration = snapshot.spotlightIndexingDurationMinutes {
+                    return "Spotlight: Indexing \(displayPath) for \(duration) min"
+                } else {
+                    return "Spotlight: Indexing \(displayPath)"
+                }
+            } else {
+                return "Spotlight: Indexing"
+            }
+        } else {
+            return "Spotlight: Idle"
+        }
+    }
+    
+    /// Format app activity for display
+    @MainActor
+    func formattedAppActivity() -> String {
+        guard let snapshot = snapshot else { return "0 (0 heavy)" }
+        return "\(snapshot.activeAppsCount) (\(snapshot.heavyAppsCount) heavy)"
     }
 }

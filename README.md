@@ -72,9 +72,9 @@ Minimal CPU/memory footprint
    - Language: **Swift**
    - Uncheck "Include Tests" (optional)
 5. Save in: `/Users/pieterdejong/dev/projects/MacOS-Performance-Monitor`
-6. Delete the default `ContentView.swift` and `UptimeMonitorApp.swift` files that Xcode creates
-7. In Xcode, right-click on the project > Add Files to "UptimeMonitor"...
-8. Select the entire `UptimeMonitor` folder (make sure "Create groups" is selected)
+6. Delete the default `ContentView.swift` file that Xcode creates
+7. In Xcode, right-click on the project > Add Files to "PerformanceMonitor"...
+8. Select the entire `PerformanceMonitor` folder (make sure "Create groups" is selected)
 9. In the project settings:
    - Go to the target's **Info** tab
    - Add `LSUIElement` key with value `YES` (or edit Info.plist directly)
@@ -154,7 +154,5 @@ PerformanceMonitor/
 - The app runs as a menu bar-only app (no Dock icon) due to `LSUIElement = YES`
 - Metrics update every 10 seconds automatically (configurable in `SystemMonitor.swift`)
 - The app requires appropriate permissions to read system information
-
-
 
 

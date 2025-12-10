@@ -33,7 +33,7 @@ Yes! You can do **all your development in Cursor**. Here's how:
 ./run.sh
 
 # Or just launch if already built
-open ./build/Build/Products/Debug/UptimeMonitor.app
+open ./build/Build/Products/Debug/PerformanceMonitor.app
 ```
 
 ### 4. Test Your Changes
@@ -52,15 +52,15 @@ open ./build/Build/Products/Debug/UptimeMonitor.app
 
 1. **Open Xcode** (just once):
    ```bash
-   open UptimeMonitor.xcodeproj
+   open PerformanceMonitor/PerformanceMonitor.xcodeproj
    ```
 
 2. **Add all Swift files** to the project:
-   - Right-click `UptimeMonitor` folder in Xcode
-   - "Add Files to 'UptimeMonitor'..."
+   - Right-click `PerformanceMonitor` folder in Xcode
+   - "Add Files to 'PerformanceMonitor'..."
    - Select: `Models/`, `Views/`, `Utilities/` folders
    - Uncheck "Copy items"
-   - Check "Add to targets: UptimeMonitor"
+   - Check "Add to targets: PerformanceMonitor"
    - Click Add
 
 3. **Verify in Xcode**:
@@ -106,13 +106,13 @@ rm -rf build/
 ./build.sh
 
 # View app logs (if app is running)
-log stream --predicate 'process == "UptimeMonitor"'
+log stream --predicate 'process == "PerformanceMonitor"'
 
 # Kill running app
-pkill -f UptimeMonitor
+pkill -f PerformanceMonitor
 
 # Open in Xcode (if needed)
-open UptimeMonitor.xcodeproj
+open PerformanceMonitor/PerformanceMonitor.xcodeproj
 ```
 
 ## 🐛 Debugging in Cursor
@@ -124,8 +124,8 @@ Build errors appear in the terminal output. Look for lines starting with:
 
 ### View Runtime Errors
 1. Open Console.app: `open -a Console`
-2. Filter by "UptimeMonitor"
-3. Or use terminal: `log stream --predicate 'process == "UptimeMonitor"'`
+2. Filter by "PerformanceMonitor"
+3. Or use terminal: `log stream --predicate 'process == "PerformanceMonitor"'`
 
 ### Common Issues
 
@@ -169,3 +169,4 @@ You only need Xcode for:
 - Interface Builder (not used in this SwiftUI project)
 
 For day-to-day coding, Cursor is perfect! 🎉
+

@@ -26,8 +26,9 @@ if ! xcodebuild -version &> /dev/null; then
 fi
 
 # Build the project
+# Note: Project is located in PerformanceMonitor/PerformanceMonitor.xcodeproj
 xcodebuild \
-    -project "${PROJECT_NAME}.xcodeproj" \
+    -project "${PROJECT_NAME}/${PROJECT_NAME}.xcodeproj" \
     -scheme "${SCHEME}" \
     -configuration "${CONFIGURATION}" \
     -derivedDataPath ./build \

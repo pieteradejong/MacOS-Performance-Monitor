@@ -95,6 +95,73 @@ struct VMStatParser {
         
         return 0
     }
+    
+    /// Get memory pressure level
+    /// - Parameter vmStatOutput: The output string from vm_stat command
+    /// - Returns: MemoryPressureLevel based on memory statistics
+    static func getMemoryPressureLevel(_ vmStatOutput: String) -> MemoryPressureLevel {
+        let lines = vmStatOutput.components(separatedBy: .newlines)
+        let pageSize: Int = 16384 // 16 KB
+        
+        var freePages: Int = 0
+        var activePages: Int = 0
+        var inactivePages: Int = 0
+        var wiredPages: Int = 0
+        var compressedPages: Int = 0
+        
+        for line in lines {
+            if line.contains("Pages free:") {
+                let components = line.components(separatedBy: .whitespaces)
+                if let value = components.last?.replacingOccurrences(of: ".", with: ""),
+                   let pages = Int(value) {
+                    freePages = pages
+                }
+            } else if line.contains("Pages active:") {
+                let components = line.components(separatedBy: .whitespaces)
+                if let value = components.last?.replacingOccurrences(of: ".", with: ""),
+                   let pages = Int(value) {
+                    activePages = pages
+                }
+            } else if line.contains("Pages inactive:") {
+                let components = line.components(separatedBy: .whitespaces)
+                if let value = components.last?.replacingOccurrences(of: ".", with: ""),
+                   let pages = Int(value) {
+                    inactivePages = pages
+                }
+            } else if line.contains("Pages wired down:") {
+                let components = line.components(separatedBy: .whitespaces)
+                if let value = components.last?.replacingOccurrences(of: ".", with: ""),
+                   let pages = Int(value) {
+                    wiredPages = pages
+                }
+            } else if line.contains("Pages stored in compressor:") {
+                let components = line.components(separatedBy: .whitespaces)
+                if let value = components.last?.replacingOccurrences(of: ".", with: ""),
+                   let pages = Int(value) {
+                    compressedPages = pages
+                }
+            }
+        }
+        
+        // Calculate total memory and used memory
+        let totalPages = freePages + activePages + inactivePages + wiredPages + compressedPages
+        guard totalPages > 0 else { return .medium }
+        
+        let usedPages = totalPages - freePages
+        let usedPercent = Double(usedPages) / Double(totalPages) * 100.0
+        
+        // Also consider compression ratio
+        let compressionRatio = totalPages > 0 ? Double(compressedPages) / Double(totalPages) : 0.0
+        
+        // Determine pressure level
+        if usedPercent > 90 || compressionRatio > 0.3 {
+            return .high
+        } else if usedPercent > 75 || compressionRatio > 0.15 {
+            return .medium
+        } else {
+            return .low
+        }
+    }
 }
 
 

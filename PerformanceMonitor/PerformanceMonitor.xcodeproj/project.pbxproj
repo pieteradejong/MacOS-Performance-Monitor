@@ -15,6 +15,13 @@
 		EAA4C7EF2EE9A126006F2AD2 /* MenuContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7E82EE9A126006F2AD2 /* MenuContentView.swift */; };
 		EAA4C7F02EE9A126006F2AD2 /* HealthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7DF2EE9A126006F2AD2 /* HealthStatus.swift */; };
 		EAA4C7F12EE9A126006F2AD2 /* HealthIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7E72EE9A126006F2AD2 /* HealthIndicatorView.swift */; };
+		EAA4C7F22EE9A126006F2AD2 /* DriftScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F32EE9A126006F2AD2 /* DriftScore.swift */; };
+		EAA4C7F42EE9A126006F2AD2 /* CPUParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F52EE9A126006F2AD2 /* CPUParser.swift */; };
+		EAA4C7F62EE9A126006F2AD2 /* DiskParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F72EE9A126006F2AD2 /* DiskParser.swift */; };
+		EAA4C7F82EE9A126006F2AD2 /* SpotlightParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F92EE9A126006F2AD2 /* SpotlightParser.swift */; };
+		EAA4C7FA2EE9A126006F2AD2 /* AppActivityParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7FB2EE9A126006F2AD2 /* AppActivityParser.swift */; };
+		EAA4C7FC2EE9A126006F2AD2 /* OverviewTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7FD2EE9A126006F2AD2 /* OverviewTabView.swift */; };
+		EAA4C7FE2EE9A126006F2AD2 /* DevTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7FF2EE9A126006F2AD2 /* DevTabView.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -27,6 +34,13 @@
 		EAA4C7E52EE9A126006F2AD2 /* VMStatParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMStatParser.swift; sourceTree = "<group>"; };
 		EAA4C7E72EE9A126006F2AD2 /* HealthIndicatorView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthIndicatorView.swift; sourceTree = "<group>"; };
 		EAA4C7E82EE9A126006F2AD2 /* MenuContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MenuContentView.swift; sourceTree = "<group>"; };
+		EAA4C7F32EE9A126006F2AD2 /* DriftScore.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftScore.swift; sourceTree = "<group>"; };
+		EAA4C7F52EE9A126006F2AD2 /* CPUParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUParser.swift; sourceTree = "<group>"; };
+		EAA4C7F72EE9A126006F2AD2 /* DiskParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskParser.swift; sourceTree = "<group>"; };
+		EAA4C7F92EE9A126006F2AD2 /* SpotlightParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightParser.swift; sourceTree = "<group>"; };
+		EAA4C7FB2EE9A126006F2AD2 /* AppActivityParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActivityParser.swift; sourceTree = "<group>"; };
+		EAA4C7FD2EE9A126006F2AD2 /* OverviewTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTabView.swift; sourceTree = "<group>"; };
+		EAA4C7FF2EE9A126006F2AD2 /* DevTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevTabView.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -73,6 +87,7 @@
 				EAA4C7DF2EE9A126006F2AD2 /* HealthStatus.swift */,
 				EAA4C7E02EE9A126006F2AD2 /* SystemMonitor.swift */,
 				EAA4C7E12EE9A126006F2AD2 /* SystemSnapshot.swift */,
+				EAA4C7F32EE9A126006F2AD2 /* DriftScore.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -83,6 +98,10 @@
 				EAA4C7E32EE9A126006F2AD2 /* Shell.swift */,
 				EAA4C7E42EE9A126006F2AD2 /* UptimeParser.swift */,
 				EAA4C7E52EE9A126006F2AD2 /* VMStatParser.swift */,
+				EAA4C7F52EE9A126006F2AD2 /* CPUParser.swift */,
+				EAA4C7F72EE9A126006F2AD2 /* DiskParser.swift */,
+				EAA4C7F92EE9A126006F2AD2 /* SpotlightParser.swift */,
+				EAA4C7FB2EE9A126006F2AD2 /* AppActivityParser.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -92,6 +111,8 @@
 			children = (
 				EAA4C7E72EE9A126006F2AD2 /* HealthIndicatorView.swift */,
 				EAA4C7E82EE9A126006F2AD2 /* MenuContentView.swift */,
+				EAA4C7FD2EE9A126006F2AD2 /* OverviewTabView.swift */,
+				EAA4C7FF2EE9A126006F2AD2 /* DevTabView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -178,6 +199,13 @@
 				EAA4C7EF2EE9A126006F2AD2 /* MenuContentView.swift in Sources */,
 				EAA4C7F02EE9A126006F2AD2 /* HealthStatus.swift in Sources */,
 				EAA4C7F12EE9A126006F2AD2 /* HealthIndicatorView.swift in Sources */,
+				EAA4C7F22EE9A126006F2AD2 /* DriftScore.swift in Sources */,
+				EAA4C7F42EE9A126006F2AD2 /* CPUParser.swift in Sources */,
+				EAA4C7F62EE9A126006F2AD2 /* DiskParser.swift in Sources */,
+				EAA4C7F82EE9A126006F2AD2 /* SpotlightParser.swift in Sources */,
+				EAA4C7FA2EE9A126006F2AD2 /* AppActivityParser.swift in Sources */,
+				EAA4C7FC2EE9A126006F2AD2 /* OverviewTabView.swift in Sources */,
+				EAA4C7FE2EE9A126006F2AD2 /* DevTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

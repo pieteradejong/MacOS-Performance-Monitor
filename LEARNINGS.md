@@ -427,6 +427,3 @@ log stream --predicate 'process == "PerformanceMonitor"'
 7. ✅ Used explicit shell command paths for security
 8. ✅ Configured app as menu bar-only (no Dock icon)
 
----
-
-*Last updated: December 2024*
