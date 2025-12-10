@@ -1,10 +1,10 @@
 import Foundation
 import SwiftUI
+import Combine
 
 /// Observable object that monitors system health metrics
 /// Holds the latest snapshot and computed HealthStatus
-@MainActor
-class SystemMonitor: ObservableObject {
+final class SystemMonitor: ObservableObject {
     /// Latest system snapshot
     @Published var snapshot: SystemSnapshot?
     
@@ -18,8 +18,10 @@ class SystemMonitor: ObservableObject {
     
     init(updateInterval: TimeInterval = 10.0) {
         self.updateInterval = updateInterval
-        updateMetrics()
-        startTimer()
+        Task { @MainActor in
+            updateMetrics()
+            startTimer()
+        }
     }
     
     deinit {
@@ -27,6 +29,7 @@ class SystemMonitor: ObservableObject {
     }
     
     /// Start the timer to update metrics every N seconds
+    @MainActor
     private func startTimer() {
         updateTimer = Timer.scheduledTimer(withTimeInterval: updateInterval, repeats: true) { [weak self] _ in
             Task { @MainActor in
@@ -42,6 +45,7 @@ class SystemMonitor: ObservableObject {
     }
     
     /// Update all system metrics and create a new snapshot
+    @MainActor
     func updateMetrics() {
         // Get uptime in seconds
         let uptimeSeconds = ProcessInfo.processInfo.systemUptime
@@ -74,6 +78,7 @@ class SystemMonitor: ObservableObject {
     
     /// Update health status based on snapshot data
     /// Applies severity rules: ok, warning, critical
+    @MainActor
     private func updateHealthStatus() {
         guard let snapshot = snapshot else {
             health = .ok
@@ -99,6 +104,7 @@ class SystemMonitor: ObservableObject {
     // MARK: - Formatted Values for UI
     
     /// Format uptime for display in menu bar (e.g., "3.2d")
+    @MainActor
     func formattedUptime() -> String {
         guard let snapshot = snapshot else { return "0.0d" }
         let days = snapshot.uptimeSeconds / 86400.0
@@ -106,6 +112,7 @@ class SystemMonitor: ObservableObject {
     }
     
     /// Format uptime with days and hours for detailed display
+    @MainActor
     func formattedUptimeDetailed() -> String {
         guard let snapshot = snapshot else { return "0d 0h" }
         let days = Int(snapshot.uptimeSeconds / 86400.0)
@@ -114,6 +121,7 @@ class SystemMonitor: ObservableObject {
     }
     
     /// Format swap used for display
+    @MainActor
     func formattedSwapUsed() -> String {
         guard let snapshot = snapshot else { return "0 MB" }
         if snapshot.swapUsedMB >= 1024 {
@@ -124,6 +132,7 @@ class SystemMonitor: ObservableObject {
     }
     
     /// Format free memory for display
+    @MainActor
     func formattedFreeMemory() -> String {
         guard let snapshot = snapshot else { return "0 MB" }
         if snapshot.freeMemoryMB >= 1024 {
@@ -134,6 +143,7 @@ class SystemMonitor: ObservableObject {
     }
     
     /// Format load averages for display
+    @MainActor
     func formattedLoadAverages() -> String {
         guard let snapshot = snapshot else { return "0.00 0.00 0.00" }
         return String(format: "%.2f %.2f %.2f", snapshot.load1, snapshot.load5, snapshot.load15)

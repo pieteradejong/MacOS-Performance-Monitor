@@ -1,15 +1,15 @@
 #!/bin/bash
-# Build script for UptimeMonitor
+# Build script for Performance Monitor
 # This script builds the app using xcodebuild
 
 set -e
 
-PROJECT_NAME="UptimeMonitor"
-SCHEME="UptimeMonitor"
+PROJECT_NAME="PerformanceMonitor"
+SCHEME="PerformanceMonitor"
 CONFIGURATION="${1:-Debug}"  # Default to Debug, can pass "Release"
 
-echo "Building $PROJECT_NAME ($CONFIGURATION)..."
-echo "=========================================="
+echo "Building Performance Monitor ($CONFIGURATION)..."
+echo "================================================"
 
 # Check if Xcode is available
 if ! command -v xcodebuild &> /dev/null; then
@@ -35,4 +35,4 @@ xcodebuild \
 
 echo ""
 echo "Build completed successfully!"
-echo "App location: ./build/Build/Products/${CONFIGURATION}/UptimeMonitor.app"
+echo "App location: ./build/Build/Products/${CONFIGURATION}/PerformanceMonitor.app"

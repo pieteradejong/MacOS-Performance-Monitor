@@ -1,10 +1,10 @@
-# UptimeMonitor
+# Performance Monitor
 
-MacOS Performance Monitor is a lightweight, menu-bar utility that continuously tracks system uptime, CPU load averages, memory pressure, and swap usage, then classifies overall system health into OK, Warning, or Critical. It provides a simple colored indicator in the menu bar and a clean dropdown with actionable insights, telling you when your Mac is behaving normally and when it’s headed toward sluggishness or instability due to long uptime, memory pressure, or runaway background tasks.
+Performance Monitor is a lightweight, menu-bar utility that continuously tracks system uptime, CPU load averages, memory pressure, and swap usage, then classifies overall system health into OK, Warning, or Critical. It provides a simple colored indicator in the menu bar and a clean dropdown with actionable insights, telling you when your Mac is behaving normally and when it’s headed toward sluggishness or instability due to long uptime, memory pressure, or runaway background tasks.
 
 
 
-A macOS menu bar app that displays system uptime and health indicators.
+A macOS menu bar app that displays system performance and health indicators.
 
 ## Features
 
@@ -65,7 +65,7 @@ Minimal CPU/memory footprint
 2. File > New > Project
 3. Choose **macOS** > **App**
 4. Configure:
-   - Product Name: `UptimeMonitor`
+   - Product Name: `PerformanceMonitor`
    - Team: (your team or None)
    - Organization Identifier: `com.yourname` (or any identifier)
    - Interface: **SwiftUI**
@@ -83,15 +83,15 @@ Minimal CPU/memory footprint
 
 ### Option 2: Use Existing Project File
 
-If an `UptimeMonitor.xcodeproj` file exists, simply:
-1. Double-click `UptimeMonitor.xcodeproj` to open in Xcode
+If a `PerformanceMonitor.xcodeproj` file exists, simply:
+1. Double-click `PerformanceMonitor.xcodeproj` to open in Xcode
 2. Build and run (⌘R)
 
 ## Project Structure
 
 ```
-UptimeMonitor/
-├── UptimeMonitorApp.swift       # App entry point with MenuBarExtra
+PerformanceMonitor/
+├── PerformanceMonitorApp.swift # App entry point with MenuBarExtra
 ├── Info.plist                   # LSUIElement = YES configuration
 ├── Models/
 │   ├── SystemMonitor.swift      # Observable object for system metrics
@@ -128,18 +128,13 @@ UptimeMonitor/
 
 ### Using Xcode
 
-1. Double-click `UptimeMonitor.xcodeproj` to open in Xcode
+1. Open `PerformanceMonitor.xcodeproj` in Xcode
 2. Build the project (⌘B)
 3. Run the app (⌘R)
 4. The app will appear in your menu bar showing uptime
 5. Click the menu bar icon to see detailed system information
 
-**Important:** If the project file is incomplete, you may need to:
-- Open the project in Xcode
-- Add all Swift files from the `UptimeMonitor/` folder to the project
-- Ensure all files are included in the build target
-
-For more details, see [BUILD.md](./BUILD.md).
+**Note:** See [BUILD.md](./BUILD.md) for detailed build instructions and [LEARNINGS.md](./LEARNINGS.md) for troubleshooting common issues.
 
 ## How It Works
 

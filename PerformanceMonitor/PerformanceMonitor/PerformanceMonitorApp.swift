@@ -13,7 +13,3 @@ struct PerformanceMonitorApp: App {
     }
 }
 
-
-
-
-
