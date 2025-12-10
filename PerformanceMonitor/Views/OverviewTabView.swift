@@ -72,6 +72,12 @@ struct DriftScoreHeaderView: View {
                         .font(.caption2)
                         .foregroundColor(.secondary)
                 }
+                
+                // Simple guidance for general users
+                Text("Use this as a quick health meter: green is fine, yellow means keep an eye on things, red means consider restarting soon.")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
             } else {
                 Text("Calculating...")
                     .font(.headline)
@@ -112,6 +118,11 @@ struct UptimeAppActivityView: View {
                         .font(.system(size: 14, weight: .medium))
                 }
             }
+            
+            Text("Long sessions and many open apps can slowly make a Mac feel less responsive over time.")
+                .font(.caption2)
+                .foregroundColor(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
@@ -203,6 +214,11 @@ struct CPUView: View {
                     }
                 }
             }
+            
+            Text("If your Mac feels hot or fans are loud, this section shows whether the CPU is the cause and which app is most active.")
+                .font(.caption2)
+                .foregroundColor(.secondary)
+                .fixedSize(horizontal: false, vertical: true)
         }
     }
 }
