@@ -18,19 +18,13 @@ Yes! You can do **all your development in Cursor**. Here's how:
 - Make your changes
 - Cursor provides Swift syntax highlighting and autocomplete
 
-### 2. Build from Cursor Terminal
+### 2. Build and Run from Cursor Terminal
 ```bash
-# Build Debug version
-./build.sh
-
-# Build Release version  
-./build.sh Release
-```
-
-### 3. Run from Cursor Terminal
-```bash
-# Build and run
+# Build and run (Debug)
 ./run.sh
+
+# Build and run (Release)
+./run.sh Release
 
 # Or just launch if already built
 open ./build/Build/Products/Debug/PerformanceMonitor.app
@@ -48,24 +42,16 @@ open ./build/Build/Products/Debug/PerformanceMonitor.app
 
 ## 📝 One-Time Setup (Do This First)
 
-**Important:** Before you can build from Cursor, you need to configure the Xcode project once:
+**Important:** Run the initialization script first:
 
-1. **Open Xcode** (just once):
-   ```bash
-   open PerformanceMonitor/PerformanceMonitor.xcodeproj
-   ```
+```bash
+./init.sh
+```
 
-2. **Add all Swift files** to the project:
-   - Right-click `PerformanceMonitor` folder in Xcode
-   - "Add Files to 'PerformanceMonitor'..."
-   - Select: `Models/`, `Views/`, `Utilities/` folders
-   - Uncheck "Copy items"
-   - Check "Add to targets: PerformanceMonitor"
-   - Click Add
-
-3. **Verify in Xcode**:
-   - Build once: `⌘B`
-   - If it builds successfully, you're done!
+This will:
+- Check for Xcode installation
+- Configure xcode-select properly
+- Verify your environment is ready to build
 
 After this one-time setup, you can work entirely in Cursor.
 
@@ -92,18 +78,21 @@ Cursor automatically detects Swift files and provides syntax highlighting.
 ## 🔧 Useful Commands in Cursor Terminal
 
 ```bash
-# Build
-./build.sh
+# Initial setup (run once)
+./init.sh
 
 # Build and run
 ./run.sh
 
+# Build and run (Release)
+./run.sh Release
+
 # Check build errors
-./build.sh 2>&1 | grep error
+./run.sh 2>&1 | grep error
 
 # Clean build
 rm -rf build/
-./build.sh
+./run.sh
 
 # View app logs (if app is running)
 log stream --predicate 'process == "PerformanceMonitor"'

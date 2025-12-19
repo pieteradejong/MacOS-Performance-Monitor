@@ -456,6 +456,7 @@ The Dev tab is a power-user / developer-focused view intended for users running 
 - [ ] Historical data/trends
 - [ ] Customizable thresholds
 - [ ] Notifications for critical states
+- [ ] Prominent \"What you can do now\" action panel in the Overview tab that suggests concrete next steps (e.g. close heavy apps, free disk space, restart) based on current bottlenecks.
 
 ## 8. Next Steps
 

@@ -117,8 +117,8 @@ PerformanceMonitor/
 **Yes, you can work entirely in Cursor!** See [CURSOR_WORKFLOW.md](./CURSOR_WORKFLOW.md) for the complete guide.
 
 ```bash
-# Build the app
-./build.sh
+# Initial setup (run once after cloning)
+./init.sh
 
 # Build and run
 ./run.sh

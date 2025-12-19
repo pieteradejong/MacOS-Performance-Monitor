@@ -4,30 +4,26 @@
 
 **Important:** Building macOS apps requires **full Xcode** (not just Command Line Tools).
 
-1. Install Xcode from the Mac App Store
-2. Open Xcode once to accept the license agreement
-3. Set the developer directory (if needed):
-   ```bash
-   sudo xcode-select --switch /Applications/Xcode.app/Contents/Developer
-   ```
+Run the initialization script to set up your development environment:
+
+```bash
+./init.sh
+```
+
+This will:
+- Check for Xcode installation
+- Configure xcode-select
+- Verify your environment is ready
 
 ## Building in Cursor
 
-### Option 1: Using Build Scripts (Recommended)
-
-We provide convenient scripts for building and running:
+### Option 1: Using Scripts (Recommended)
 
 ```bash
-# Build the app (Debug configuration)
-./build.sh
-
-# Build Release configuration
-./build.sh Release
-
-# Build and run the app
+# Build and run the app (Debug configuration)
 ./run.sh
 
-# Build Release and run
+# Build and run Release configuration
 ./run.sh Release
 ```
 
@@ -78,7 +74,7 @@ Press `⌘R` or click the Run button in Xcode
 ### Creating a Release Build
 
 ```bash
-./build.sh Release
+./run.sh Release
 ```
 
 The Release build will be optimized and smaller.
@@ -87,7 +83,7 @@ The Release build will be optimized and smaller.
 
 1. Build Release version:
    ```bash
-   ./build.sh Release
+   ./run.sh Release
    ```
 
 2. The app bundle is located at:
@@ -135,9 +131,9 @@ codesign --deep --force --verify --verbose --sign "Developer ID Application: You
 
 ## Development Workflow
 
-1. **Edit code** in Cursor
-2. **Build** using `./build.sh` or Xcode
-3. **Run** using `./run.sh` or Xcode
+1. **Initial setup**: Run `./init.sh` once after cloning
+2. **Edit code** in Cursor
+3. **Build and run** using `./run.sh` or Xcode
 4. **Test** the menu bar app
 5. **Iterate**
 

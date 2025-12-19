@@ -264,6 +264,10 @@ struct NotificationsActionsFooterView: View {
     @State private var diskSpaceWarnings = true
     @State private var uptimeReminders = true
     
+    @State private var startAtLoginEnabled = false
+    @State private var startAtLoginStatusText: String?
+    @State private var startAtLoginErrorText: String?
+    
     var body: some View {
         VStack(alignment: .leading, spacing: 12) {
             // Notification toggles
@@ -274,6 +278,45 @@ struct NotificationsActionsFooterView: View {
                     .font(.caption)
                 Toggle("Uptime reminders", isOn: $uptimeReminders)
                     .font(.caption)
+            }
+            
+            Divider()
+            
+            // Startup
+            VStack(alignment: .leading, spacing: 6) {
+                Toggle("Start at login", isOn: $startAtLoginEnabled)
+                    .font(.caption)
+                    .onChange(of: startAtLoginEnabled) { _, newValue in
+                        setStartAtLogin(newValue)
+                    }
+                
+                if let statusText = startAtLoginStatusText {
+                    Text(statusText)
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
+                
+                Text(startAtLoginEnabled
+                     ? "This app will open automatically when you sign in."
+                     : "Re-enable anytime in this app, or in System Settings → Login Items.")
+                    .font(.caption2)
+                    .foregroundColor(.secondary)
+                    .fixedSize(horizontal: false, vertical: true)
+                
+                HStack(spacing: 8) {
+                    Button("Open Login Items…") {
+                        openLoginItemsSettings()
+                    }
+                    .buttonStyle(.link)
+                    
+                    if let errorText = startAtLoginErrorText {
+                        Text(errorText)
+                            .font(.caption2)
+                            .foregroundColor(.secondary)
+                            .fixedSize(horizontal: false, vertical: true)
+                    }
+                }
             }
             
             Divider()
@@ -313,6 +356,9 @@ struct NotificationsActionsFooterView: View {
                     .foregroundColor(.secondary)
             }
         }
+        .onAppear {
+            refreshStartAtLoginState()
+        }
     }
     
     private func openActivityMonitor() {
@@ -342,6 +388,48 @@ struct NotificationsActionsFooterView: View {
     
     private func quitApp() {
         NSApplication.shared.terminate(nil)
+    }
+    
+    private func refreshStartAtLoginState() {
+        startAtLoginErrorText = nil
+        
+        if #available(macOS 13.0, *) {
+            startAtLoginEnabled = LaunchAtLoginManager.isEnabled || LaunchAtLoginManager.requiresApproval
+            startAtLoginStatusText = LaunchAtLoginManager.statusDescription
+        } else {
+            startAtLoginEnabled = false
+            startAtLoginStatusText = "Requires macOS 13 or later"
+        }
+    }
+    
+    private func setStartAtLogin(_ enabled: Bool) {
+        startAtLoginErrorText = nil
+        
+        guard #available(macOS 13.0, *) else {
+            startAtLoginErrorText = "Requires macOS 13 or later"
+            startAtLoginEnabled = false
+            return
+        }
+        
+        do {
+            try LaunchAtLoginManager.setEnabled(enabled)
+        } catch {
+            startAtLoginErrorText = "Couldn’t update Start at login. You can change it in System Settings → Login Items."
+        }
+        
+        // Always reflect the system-reported status after attempting the change.
+        refreshStartAtLoginState()
+    }
+    
+    private func openLoginItemsSettings() {
+        if let url = URL(string: "x-apple.systempreferences:com.apple.LoginItems-Settings.extension") {
+            NSWorkspace.shared.open(url)
+        } else {
+            // Fallback: open System Settings root if the URL can't be constructed.
+            if let fallbackURL = URL(string: "x-apple.systempreferences:") {
+                NSWorkspace.shared.open(fallbackURL)
+            }
+        }
     }
     
     private func formattedLastUpdated() -> String {

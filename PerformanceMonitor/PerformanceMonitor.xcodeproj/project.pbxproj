@@ -20,9 +20,29 @@
 		EAA4C7F62EE9A126006F2AD2 /* DiskParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F72EE9A126006F2AD2 /* DiskParser.swift */; };
 		EAA4C7F82EE9A126006F2AD2 /* SpotlightParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F92EE9A126006F2AD2 /* SpotlightParser.swift */; };
 		EAA4C7FA2EE9A126006F2AD2 /* AppActivityParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7FB2EE9A126006F2AD2 /* AppActivityParser.swift */; };
+		EAA4C8012EE9A126006F2AD2 /* LaunchAtLoginManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C8002EE9A126006F2AD2 /* LaunchAtLoginManager.swift */; };
 		EAA4C7FC2EE9A126006F2AD2 /* OverviewTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7FD2EE9A126006F2AD2 /* OverviewTabView.swift */; };
 		EAA4C7FE2EE9A126006F2AD2 /* DevTabView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7FF2EE9A126006F2AD2 /* DevTabView.swift */; };
+		EAFF00012EEB0001006F2AD2 /* UptimeParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF00022EEB0001006F2AD2 /* UptimeParserTests.swift */; };
+		EAFF00032EEB0001006F2AD2 /* VMStatParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF00042EEB0001006F2AD2 /* VMStatParserTests.swift */; };
+		EAFF00052EEB0001006F2AD2 /* DiskParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF00062EEB0001006F2AD2 /* DiskParserTests.swift */; };
+		EAFF00122EEB0002006F2AD2 /* DriftScoreTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF00132EEB0002006F2AD2 /* DriftScoreTests.swift */; };
+		EAFF00142EEB0002006F2AD2 /* HealthStatusTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF00152EEB0002006F2AD2 /* HealthStatusTests.swift */; };
+		EAFF00162EEB0003006F2AD2 /* CPUParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF00172EEB0003006F2AD2 /* CPUParserTests.swift */; };
+		EAFF00182EEB0003006F2AD2 /* SpotlightParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF00192EEB0003006F2AD2 /* SpotlightParserTests.swift */; };
+		EAFF001A2EEB0003006F2AD2 /* AppActivityParserTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF001B2EEB0003006F2AD2 /* AppActivityParserTests.swift */; };
+		EAFF001C2EEB0004006F2AD2 /* SystemMonitorTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAFF001D2EEB0004006F2AD2 /* SystemMonitorTests.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		EAFF00072EEB0001006F2AD2 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = EAA4C7C92EE99FDF006F2AD2 /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = EAA4C7D02EE99FDF006F2AD2;
+			remoteInfo = PerformanceMonitor;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXFileReference section */
 		EAA4C7D12EE99FDF006F2AD2 /* PerformanceMonitor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = PerformanceMonitor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -39,8 +59,19 @@
 		EAA4C7F72EE9A126006F2AD2 /* DiskParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskParser.swift; sourceTree = "<group>"; };
 		EAA4C7F92EE9A126006F2AD2 /* SpotlightParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightParser.swift; sourceTree = "<group>"; };
 		EAA4C7FB2EE9A126006F2AD2 /* AppActivityParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActivityParser.swift; sourceTree = "<group>"; };
+		EAA4C8002EE9A126006F2AD2 /* LaunchAtLoginManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LaunchAtLoginManager.swift; sourceTree = "<group>"; };
 		EAA4C7FD2EE9A126006F2AD2 /* OverviewTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = OverviewTabView.swift; sourceTree = "<group>"; };
 		EAA4C7FF2EE9A126006F2AD2 /* DevTabView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DevTabView.swift; sourceTree = "<group>"; };
+		EAFF00082EEB0001006F2AD2 /* PerformanceMonitorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = PerformanceMonitorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		EAFF00022EEB0001006F2AD2 /* UptimeParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UptimeParserTests.swift; sourceTree = "<group>"; };
+		EAFF00042EEB0001006F2AD2 /* VMStatParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMStatParserTests.swift; sourceTree = "<group>"; };
+		EAFF00062EEB0001006F2AD2 /* DiskParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DiskParserTests.swift; sourceTree = "<group>"; };
+		EAFF00132EEB0002006F2AD2 /* DriftScoreTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DriftScoreTests.swift; sourceTree = "<group>"; };
+		EAFF00152EEB0002006F2AD2 /* HealthStatusTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStatusTests.swift; sourceTree = "<group>"; };
+		EAFF00172EEB0003006F2AD2 /* CPUParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CPUParserTests.swift; sourceTree = "<group>"; };
+		EAFF00192EEB0003006F2AD2 /* SpotlightParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SpotlightParserTests.swift; sourceTree = "<group>"; };
+		EAFF001B2EEB0003006F2AD2 /* AppActivityParserTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppActivityParserTests.swift; sourceTree = "<group>"; };
+		EAFF001D2EEB0004006F2AD2 /* SystemMonitorTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMonitorTests.swift; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFileSystemSynchronizedRootGroup section */
@@ -59,6 +90,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAFF00092EEB0001006F2AD2 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -69,6 +107,7 @@
 				EAA4C7E62EE9A126006F2AD2 /* Utilities */,
 				EAA4C7E92EE9A126006F2AD2 /* Views */,
 				EAA4C7D32EE99FDF006F2AD2 /* PerformanceMonitor */,
+				EAFF000A2EEB0001006F2AD2 /* PerformanceMonitorTests */,
 				EAA4C7D22EE99FDF006F2AD2 /* Products */,
 			);
 			sourceTree = "<group>";
@@ -77,6 +116,7 @@
 			isa = PBXGroup;
 			children = (
 				EAA4C7D12EE99FDF006F2AD2 /* PerformanceMonitor.app */,
+				EAFF00082EEB0001006F2AD2 /* PerformanceMonitorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -102,6 +142,7 @@
 				EAA4C7F72EE9A126006F2AD2 /* DiskParser.swift */,
 				EAA4C7F92EE9A126006F2AD2 /* SpotlightParser.swift */,
 				EAA4C7FB2EE9A126006F2AD2 /* AppActivityParser.swift */,
+				EAA4C8002EE9A126006F2AD2 /* LaunchAtLoginManager.swift */,
 			);
 			path = Utilities;
 			sourceTree = "<group>";
@@ -115,6 +156,22 @@
 				EAA4C7FF2EE9A126006F2AD2 /* DevTabView.swift */,
 			);
 			path = Views;
+			sourceTree = "<group>";
+		};
+		EAFF000A2EEB0001006F2AD2 /* PerformanceMonitorTests */ = {
+			isa = PBXGroup;
+			children = (
+				EAFF00022EEB0001006F2AD2 /* UptimeParserTests.swift */,
+				EAFF00042EEB0001006F2AD2 /* VMStatParserTests.swift */,
+				EAFF00062EEB0001006F2AD2 /* DiskParserTests.swift */,
+				EAFF00132EEB0002006F2AD2 /* DriftScoreTests.swift */,
+				EAFF00152EEB0002006F2AD2 /* HealthStatusTests.swift */,
+				EAFF00172EEB0003006F2AD2 /* CPUParserTests.swift */,
+				EAFF00192EEB0003006F2AD2 /* SpotlightParserTests.swift */,
+				EAFF001B2EEB0003006F2AD2 /* AppActivityParserTests.swift */,
+				EAFF001D2EEB0004006F2AD2 /* SystemMonitorTests.swift */,
+			);
+			path = PerformanceMonitorTests;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -142,6 +199,26 @@
 			productReference = EAA4C7D12EE99FDF006F2AD2 /* PerformanceMonitor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		EAFF000B2EEB0001006F2AD2 /* PerformanceMonitorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = EAFF000C2EEB0001006F2AD2 /* Build configuration list for PBXNativeTarget "PerformanceMonitorTests" */;
+			buildPhases = (
+				EAFF000D2EEB0001006F2AD2 /* Sources */,
+				EAFF00092EEB0001006F2AD2 /* Frameworks */,
+				EAFF000E2EEB0001006F2AD2 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				EAFF000F2EEB0001006F2AD2 /* PBXTargetDependency */,
+			);
+			name = PerformanceMonitorTests;
+			packageProductDependencies = (
+			);
+			productName = PerformanceMonitorTests;
+			productReference = EAFF00082EEB0001006F2AD2 /* PerformanceMonitorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
@@ -154,6 +231,10 @@
 				TargetAttributes = {
 					EAA4C7D02EE99FDF006F2AD2 = {
 						CreatedOnToolsVersion = 26.1.1;
+					};
+					EAFF000B2EEB0001006F2AD2 = {
+						CreatedOnToolsVersion = 26.1.1;
+						TestTargetID = EAA4C7D02EE99FDF006F2AD2;
 					};
 				};
 			};
@@ -172,12 +253,20 @@
 			projectRoot = "";
 			targets = (
 				EAA4C7D02EE99FDF006F2AD2 /* PerformanceMonitor */,
+				EAFF000B2EEB0001006F2AD2 /* PerformanceMonitorTests */,
 			);
 		};
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
 		EAA4C7CF2EE99FDF006F2AD2 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		EAFF000E2EEB0001006F2AD2 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
@@ -204,12 +293,37 @@
 				EAA4C7F62EE9A126006F2AD2 /* DiskParser.swift in Sources */,
 				EAA4C7F82EE9A126006F2AD2 /* SpotlightParser.swift in Sources */,
 				EAA4C7FA2EE9A126006F2AD2 /* AppActivityParser.swift in Sources */,
+				EAA4C8012EE9A126006F2AD2 /* LaunchAtLoginManager.swift in Sources */,
 				EAA4C7FC2EE9A126006F2AD2 /* OverviewTabView.swift in Sources */,
 				EAA4C7FE2EE9A126006F2AD2 /* DevTabView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		EAFF000D2EEB0001006F2AD2 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				EAFF00012EEB0001006F2AD2 /* UptimeParserTests.swift in Sources */,
+				EAFF00032EEB0001006F2AD2 /* VMStatParserTests.swift in Sources */,
+				EAFF00052EEB0001006F2AD2 /* DiskParserTests.swift in Sources */,
+				EAFF00122EEB0002006F2AD2 /* DriftScoreTests.swift in Sources */,
+				EAFF00142EEB0002006F2AD2 /* HealthStatusTests.swift in Sources */,
+				EAFF00162EEB0003006F2AD2 /* CPUParserTests.swift in Sources */,
+				EAFF00182EEB0003006F2AD2 /* SpotlightParserTests.swift in Sources */,
+				EAFF001A2EEB0003006F2AD2 /* AppActivityParserTests.swift in Sources */,
+				EAFF001C2EEB0004006F2AD2 /* SystemMonitorTests.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		EAFF000F2EEB0001006F2AD2 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = EAA4C7D02EE99FDF006F2AD2 /* PerformanceMonitor */;
+			targetProxy = EAFF00072EEB0001006F2AD2 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		EAA4C7DA2EE99FE1006F2AD2 /* Debug */ = {
@@ -394,6 +508,44 @@
 			};
 			name = Release;
 		};
+		EAFF00102EEB0001006F2AD2 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.performancemonitor.PerformanceMonitorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PerformanceMonitor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PerformanceMonitor";
+			};
+			name = Debug;
+		};
+		EAFF00112EEB0001006F2AD2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CODE_SIGN_STYLE = Automatic;
+				CURRENT_PROJECT_VERSION = 1;
+				GENERATE_INFOPLIST_FILE = YES;
+				MACOSX_DEPLOYMENT_TARGET = 26.1;
+				MARKETING_VERSION = 1.0;
+				PRODUCT_BUNDLE_IDENTIFIER = com.performancemonitor.PerformanceMonitorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_APPROACHABLE_CONCURRENCY = YES;
+				SWIFT_DEFAULT_ACTOR_ISOLATION = MainActor;
+				SWIFT_EMIT_LOC_STRINGS = NO;
+				SWIFT_VERSION = 5.0;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/PerformanceMonitor.app/$(BUNDLE_EXECUTABLE_FOLDER_PATH)/PerformanceMonitor";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -411,6 +563,15 @@
 			buildConfigurations = (
 				EAA4C7DD2EE99FE1006F2AD2 /* Debug */,
 				EAA4C7DE2EE99FE1006F2AD2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		EAFF000C2EEB0001006F2AD2 /* Build configuration list for PBXNativeTarget "PerformanceMonitorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				EAFF00102EEB0001006F2AD2 /* Debug */,
+				EAFF00112EEB0001006F2AD2 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
