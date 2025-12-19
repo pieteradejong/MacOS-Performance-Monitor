@@ -30,6 +30,12 @@ struct SystemSnapshot {
     let spotlightIndexingPath: String?
     let spotlightIndexingDurationMinutes: Int?
     
+    // Enhanced Spotlight metrics
+    let spotlightActiveWorkerCount: Int
+    let spotlightTotalCPUPercent: Double
+    let spotlightIndexedItemCount: Int?
+    let spotlightActivityLevel: SpotlightActivityLevel
+    
     // App activity
     let activeAppsCount: Int
     let heavyAppsCount: Int

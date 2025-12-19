@@ -111,6 +111,10 @@ final class SystemMonitor: ObservableObject {
             isSpotlightIndexing: spotlightStatus.isIndexing,
             spotlightIndexingPath: spotlightStatus.indexingPath,
             spotlightIndexingDurationMinutes: spotlightStatus.durationMinutes,
+            spotlightActiveWorkerCount: spotlightStatus.activeWorkerCount,
+            spotlightTotalCPUPercent: spotlightStatus.totalCPUPercent,
+            spotlightIndexedItemCount: spotlightStatus.indexedItemCount,
+            spotlightActivityLevel: spotlightStatus.activityLevel,
             activeAppsCount: appActivity.activeAppsCount,
             heavyAppsCount: appActivity.heavyAppsCount
         )
@@ -220,20 +224,32 @@ final class SystemMonitor: ObservableObject {
     @MainActor
     func formattedSpotlightStatus() -> String {
         guard let snapshot = snapshot else { return "Spotlight: Unknown" }
-        if snapshot.isSpotlightIndexing {
-            if let path = snapshot.spotlightIndexingPath {
-                let displayPath = path.count > 40 ? "..." + String(path.suffix(37)) : path
-                if let duration = snapshot.spotlightIndexingDurationMinutes {
-                    return "Spotlight: Indexing \(displayPath) for \(duration) min"
-                } else {
-                    return "Spotlight: Indexing \(displayPath)"
-                }
+        
+        switch snapshot.spotlightActivityLevel {
+        case .idle:
+            if let count = snapshot.spotlightIndexedItemCount {
+                let formatted = formatNumber(count)
+                return "Spotlight: \(formatted) items indexed"
             } else {
-                return "Spotlight: Indexing"
+                return "Spotlight: Idle"
             }
-        } else {
-            return "Spotlight: Idle"
+            
+        case .light:
+            let workers = snapshot.spotlightActiveWorkerCount
+            return "Spotlight: Light activity (\(workers) worker\(workers == 1 ? "" : "s"))"
+            
+        case .heavy:
+            let workers = snapshot.spotlightActiveWorkerCount
+            let cpu = Int(snapshot.spotlightTotalCPUPercent)
+            return "Spotlight: Heavy indexing (\(workers) workers, \(cpu)% CPU)"
         }
+    }
+    
+    /// Format a large number with commas (e.g., 374933 -> "374,933")
+    private func formatNumber(_ number: Int) -> String {
+        let formatter = NumberFormatter()
+        formatter.numberStyle = .decimal
+        return formatter.string(from: NSNumber(value: number)) ?? "\(number)"
     }
     
     /// Format app activity for display

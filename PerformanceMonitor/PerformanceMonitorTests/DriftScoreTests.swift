@@ -35,6 +35,10 @@ final class DriftScoreTests: XCTestCase {
             isSpotlightIndexing: isSpotlightIndexing,
             spotlightIndexingPath: nil,
             spotlightIndexingDurationMinutes: spotlightDurationMinutes,
+            spotlightActiveWorkerCount: isSpotlightIndexing ? 2 : 0,
+            spotlightTotalCPUPercent: isSpotlightIndexing ? 10.0 : 0.0,
+            spotlightIndexedItemCount: 374933,
+            spotlightActivityLevel: isSpotlightIndexing ? .light : .idle,
             activeAppsCount: 10,
             heavyAppsCount: 2
         )

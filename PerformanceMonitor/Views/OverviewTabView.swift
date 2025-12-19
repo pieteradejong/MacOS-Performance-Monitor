@@ -239,21 +239,45 @@ struct DiskSpotlightView: View {
                     .font(.system(size: 12))
                     .foregroundColor(snapshot.diskFreePercent < 10 ? .red : .primary)
                 
-                // Spotlight indexing
-                HStack {
-                    if snapshot.isSpotlightIndexing {
+                // Spotlight indexing with activity-based display
+                HStack(spacing: 6) {
+                    // Show spinner only when actively indexing
+                    if snapshot.spotlightActivityLevel != .idle {
                         ProgressView()
                             .scaleEffect(0.7)
+                    } else {
+                        // Show checkmark when idle
+                        Image(systemName: "checkmark.circle.fill")
+                            .foregroundColor(.green)
+                            .font(.system(size: 12))
                     }
+                    
                     Text(monitor.formattedSpotlightStatus())
                         .font(.system(size: 12))
+                        .foregroundColor(colorForActivityLevel(snapshot.spotlightActivityLevel))
                 }
                 
-                Text("Long-running indexing and low disk space can cause temporary slowdowns.")
-                    .font(.caption2)
-                    .foregroundColor(.secondary)
-                    .fixedSize(horizontal: false, vertical: true)
+                // Show additional detail for heavy indexing
+                if snapshot.spotlightActivityLevel == .heavy {
+                    Text("Heavy indexing may temporarily slow down your Mac.")
+                        .font(.caption2)
+                        .foregroundColor(.orange)
+                        .fixedSize(horizontal: false, vertical: true)
+                } else {
+                    Text("Long-running indexing and low disk space can cause temporary slowdowns.")
+                        .font(.caption2)
+                        .foregroundColor(.secondary)
+                        .fixedSize(horizontal: false, vertical: true)
+                }
             }
+        }
+    }
+    
+    private func colorForActivityLevel(_ level: SpotlightActivityLevel) -> Color {
+        switch level {
+        case .idle: return .primary
+        case .light: return .primary
+        case .heavy: return .orange
         }
     }
 }
