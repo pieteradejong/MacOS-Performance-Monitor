@@ -40,7 +40,8 @@ final class DriftScoreTests: XCTestCase {
             spotlightIndexedItemCount: 374933,
             spotlightActivityLevel: isSpotlightIndexing ? .light : .idle,
             activeAppsCount: 10,
-            heavyAppsCount: 2
+            heavyAppsCount: 2,
+            topAppDrainers: []
         )
     }
     

@@ -16,6 +16,7 @@
 		EAA4C7F02EE9A126006F2AD2 /* HealthStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7DF2EE9A126006F2AD2 /* HealthStatus.swift */; };
 		EAA4C7F12EE9A126006F2AD2 /* HealthIndicatorView.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7E72EE9A126006F2AD2 /* HealthIndicatorView.swift */; };
 		EAA4C7F22EE9A126006F2AD2 /* DriftScore.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F32EE9A126006F2AD2 /* DriftScore.swift */; };
+		EA1A3D903A8D4F8B00A1B2C3 /* ProcessUsage.swift in Sources */ = {isa = PBXBuildFile; fileRef = EA1A3D8F3A8D4F8B00A1B2C3 /* ProcessUsage.swift */; };
 		EAA4C7F42EE9A126006F2AD2 /* CPUParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F52EE9A126006F2AD2 /* CPUParser.swift */; };
 		EAA4C7F62EE9A126006F2AD2 /* DiskParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F72EE9A126006F2AD2 /* DiskParser.swift */; };
 		EAA4C7F82EE9A126006F2AD2 /* SpotlightParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = EAA4C7F92EE9A126006F2AD2 /* SpotlightParser.swift */; };
@@ -49,6 +50,7 @@
 		EAA4C7DF2EE9A126006F2AD2 /* HealthStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = HealthStatus.swift; sourceTree = "<group>"; };
 		EAA4C7E02EE9A126006F2AD2 /* SystemMonitor.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemMonitor.swift; sourceTree = "<group>"; };
 		EAA4C7E12EE9A126006F2AD2 /* SystemSnapshot.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SystemSnapshot.swift; sourceTree = "<group>"; };
+		EA1A3D8F3A8D4F8B00A1B2C3 /* ProcessUsage.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ProcessUsage.swift; sourceTree = "<group>"; };
 		EAA4C7E32EE9A126006F2AD2 /* Shell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Shell.swift; sourceTree = "<group>"; };
 		EAA4C7E42EE9A126006F2AD2 /* UptimeParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UptimeParser.swift; sourceTree = "<group>"; };
 		EAA4C7E52EE9A126006F2AD2 /* VMStatParser.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = VMStatParser.swift; sourceTree = "<group>"; };
@@ -128,6 +130,7 @@
 				EAA4C7E02EE9A126006F2AD2 /* SystemMonitor.swift */,
 				EAA4C7E12EE9A126006F2AD2 /* SystemSnapshot.swift */,
 				EAA4C7F32EE9A126006F2AD2 /* DriftScore.swift */,
+				EA1A3D8F3A8D4F8B00A1B2C3 /* ProcessUsage.swift */,
 			);
 			path = Models;
 			sourceTree = "<group>";
@@ -289,6 +292,7 @@
 				EAA4C7F02EE9A126006F2AD2 /* HealthStatus.swift in Sources */,
 				EAA4C7F12EE9A126006F2AD2 /* HealthIndicatorView.swift in Sources */,
 				EAA4C7F22EE9A126006F2AD2 /* DriftScore.swift in Sources */,
+				EA1A3D903A8D4F8B00A1B2C3 /* ProcessUsage.swift in Sources */,
 				EAA4C7F42EE9A126006F2AD2 /* CPUParser.swift in Sources */,
 				EAA4C7F62EE9A126006F2AD2 /* DiskParser.swift in Sources */,
 				EAA4C7F82EE9A126006F2AD2 /* SpotlightParser.swift in Sources */,

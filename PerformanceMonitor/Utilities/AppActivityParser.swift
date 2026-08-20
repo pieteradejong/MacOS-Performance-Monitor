@@ -6,25 +6,34 @@ struct AppActivityParser {
     struct AppActivity {
         let activeAppsCount: Int
         let heavyAppsCount: Int
+        let topDrainers: [ProcessUsage]
+        
+        init(activeAppsCount: Int, heavyAppsCount: Int, topDrainers: [ProcessUsage] = []) {
+            self.activeAppsCount = activeAppsCount
+            self.heavyAppsCount = heavyAppsCount
+            self.topDrainers = topDrainers
+        }
     }
     
     /// Get app activity statistics
     /// - Returns: AppActivity with counts of active and heavy apps
-    static func getAppActivity() -> AppActivity {
+    static func getAppActivity(topLimit: Int = 6) -> AppActivity {
         // Use ps to count running applications
         // Count processes that are user applications (not system processes)
         let psOutput = Shell.runShell("/bin/ps", ["-eo", "pid,pcpu,pmem,comm"])
         let lines = psOutput.components(separatedBy: .newlines)
         
         var activeApps = Set<String>()
-        var heavyApps = 0
+        var heavyApps = Set<String>()
+        var drainers: [ProcessUsage] = []
         
         // Skip header line
         for line in lines.dropFirst() {
             let components = line.trimmingCharacters(in: .whitespaces).components(separatedBy: .whitespaces)
             guard components.count >= 4 else { continue }
             
-            guard let cpuPercent = Double(components[1]),
+            guard let pid = Int(components[0]),
+                  let cpuPercent = Double(components[1]),
                   let memPercent = Double(components[2]) else {
                 continue
             }
@@ -37,14 +46,33 @@ struct AppActivityParser {
                 
                 // Consider app "heavy" if CPU > 50% or memory > 5%
                 if cpuPercent > 50.0 || memPercent > 5.0 {
-                    heavyApps += 1
+                    heavyApps.insert(processName)
                 }
+                
+                drainers.append(
+                    ProcessUsage(
+                        pid: pid,
+                        name: processName,
+                        cpuPercent: cpuPercent,
+                        memPercent: memPercent
+                    )
+                )
             }
         }
         
+        let topDrainers = drainers
+            .sorted { lhs, rhs in
+                if lhs.drainScore != rhs.drainScore { return lhs.drainScore > rhs.drainScore }
+                if lhs.cpuPercent != rhs.cpuPercent { return lhs.cpuPercent > rhs.cpuPercent }
+                return lhs.memPercent > rhs.memPercent
+            }
+            .prefix(max(0, topLimit))
+            .map { $0 }
+        
         return AppActivity(
             activeAppsCount: activeApps.count,
-            heavyAppsCount: heavyApps
+            heavyAppsCount: heavyApps.count,
+            topDrainers: topDrainers
         )
     }
     

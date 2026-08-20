@@ -87,8 +87,8 @@ final class SystemMonitor: ObservableObject {
         // Get Spotlight indexing status
         let spotlightStatus = SpotlightParser.getSpotlightStatus()
         
-        // Get app activity
-        let appActivity = AppActivityParser.getAppActivity()
+        // Get app activity (including a ranked list of drainers)
+        let appActivity = AppActivityParser.getAppActivity(topLimit: 6)
         
         // Create new snapshot with all metrics
         snapshot = SystemSnapshot(
@@ -116,7 +116,8 @@ final class SystemMonitor: ObservableObject {
             spotlightIndexedItemCount: spotlightStatus.indexedItemCount,
             spotlightActivityLevel: spotlightStatus.activityLevel,
             activeAppsCount: appActivity.activeAppsCount,
-            heavyAppsCount: appActivity.heavyAppsCount
+            heavyAppsCount: appActivity.heavyAppsCount,
+            topAppDrainers: appActivity.topDrainers
         )
         
         // Update health status based on rules

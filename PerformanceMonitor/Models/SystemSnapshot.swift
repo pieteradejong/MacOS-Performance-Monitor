@@ -39,6 +39,7 @@ struct SystemSnapshot {
     // App activity
     let activeAppsCount: Int
     let heavyAppsCount: Int
+    let topAppDrainers: [ProcessUsage]
 }
 
 /// Memory pressure levels

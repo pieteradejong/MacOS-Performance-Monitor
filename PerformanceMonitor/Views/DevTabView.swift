@@ -48,20 +48,22 @@ struct DevHotspotsView: View {
                 .font(.caption)
                 .foregroundColor(.secondary)
             
-            if let snapshot = monitor.snapshot, snapshot.topProcessCPUPercent > 0 {
+            if let snapshot = monitor.snapshot, (!snapshot.topAppDrainers.isEmpty || snapshot.topProcessCPUPercent > 0) {
                 VStack(alignment: .leading, spacing: 4) {
-                    HStack {
-                        Text(snapshot.topProcessName ?? "Unknown")
-                            .font(.system(size: 12, weight: .medium))
-                        Spacer()
-                        Text(String(format: "%.0f%%", snapshot.topProcessCPUPercent))
-                            .font(.system(size: 12))
-                            .foregroundColor(.secondary)
-                        Text("CPU")
-                            .font(.caption2)
-                            .foregroundColor(.secondary)
+                    ForEach(snapshot.topAppDrainers.prefix(6)) { proc in
+                        HStack {
+                            Text(proc.name)
+                                .font(.system(size: 12, weight: .medium))
+                                .lineLimit(1)
+                            Spacer()
+                            Text(String(format: "%.0f%% CPU", proc.cpuPercent))
+                                .font(.system(size: 12))
+                                .foregroundColor(.secondary)
+                            Text(String(format: "%.1f%% MEM", proc.memPercent))
+                                .font(.system(size: 12))
+                                .foregroundColor(.secondary)
+                        }
                     }
-                    // TODO: Add memory usage and dev tool badge when process list is implemented
                 }
             } else {
                 Text("No high-CPU processes detected")

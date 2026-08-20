@@ -213,12 +213,51 @@ struct CPUView: View {
                             .foregroundColor(.secondary)
                     }
                 }
+                
+                if !snapshot.topAppDrainers.isEmpty {
+                    VStack(alignment: .leading, spacing: 6) {
+                        Text("Top drainers")
+                            .font(.caption)
+                            .foregroundColor(.secondary)
+                        
+                        ForEach(snapshot.topAppDrainers.prefix(4)) { proc in
+                            HStack(spacing: 8) {
+                                Circle()
+                                    .fill(color(for: proc.severity))
+                                    .frame(width: 6, height: 6)
+                                
+                                Text(proc.name)
+                                    .font(.system(size: 12, weight: .medium))
+                                    .lineLimit(1)
+                                
+                                Spacer()
+                                
+                                Text(String(format: "%.0f%% CPU", proc.cpuPercent))
+                                    .font(.system(size: 11))
+                                    .foregroundColor(.secondary)
+                                
+                                Text(String(format: "%.1f%% MEM", proc.memPercent))
+                                    .font(.system(size: 11))
+                                    .foregroundColor(.secondary)
+                            }
+                        }
+                    }
+                    .padding(.top, 4)
+                }
             }
             
             Text("If your Mac feels hot or fans are loud, this section shows whether the CPU is the cause and which app is most active.")
                 .font(.caption2)
                 .foregroundColor(.secondary)
                 .fixedSize(horizontal: false, vertical: true)
+        }
+    }
+    
+    private func color(for severity: DrainSeverity) -> Color {
+        switch severity {
+        case .low: return .secondary
+        case .medium: return .orange
+        case .high: return .red
         }
     }
 }
