@@ -1,8 +1,9 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Initialize development environment for Performance Monitor
 # Run this once after cloning the repository
 
 set -e
+case "${1:-}" in -h|--help) sed -n '2,3p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;; esac
 
 echo "Performance Monitor - Development Setup"
 echo "========================================"

@@ -1,9 +1,9 @@
-#!/bin/bash
-
+#!/usr/bin/env bash
 # Enhanced Performance Monitor Test Runner
 # Usage: ./test.sh [--compact|--verbose]
 
 set -e
+case "${1:-}" in -h|--help) sed -n '2,3p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;; esac
 
 cd "$(dirname "$0")/PerformanceMonitor"
 

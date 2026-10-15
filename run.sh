@@ -1,7 +1,11 @@
-#!/bin/bash
+#!/usr/bin/env bash
 # Build and run Performance Monitor
 
 set -e
+case "${1:-}" in
+    -h|--help) sed -n '2,2p' "$0" | sed 's/^# \{0,1\}//'; exit 0 ;;
+    test)      shift; exec "$(dirname "$0")/test.sh" "$@" ;;
+esac
 
 PROJECT_NAME="PerformanceMonitor"
 SCHEME="PerformanceMonitor"
