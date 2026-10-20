@@ -30,3 +30,13 @@ xcuserdata/
 *.swp
 *~.nib
 *.tmp
+
+# --- added 2026-09-01 (workspace audit): baseline patterns that were missing ---
+.env
+.env.*
+!.env.example
+!.env.template
+**/.env
+**/.env.*
+!**/.env.example
+!**/.env.template
